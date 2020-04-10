@@ -4,6 +4,12 @@ Serial port monitor written in TypeScript and Electron.
 
 This is a work in progress.
 
+- [Data requirements](data-requirements)
+- [Download](#download-windows-x64)
+- [Build](#build)
+- [Screenshots](#screenshots)
+- [How it works](#how-it-works)
+
 ## Data requirements
 - messages separated by `\n`
 
@@ -66,3 +72,6 @@ Release: https://github.com/itterheim/Electron-Serial-Port-Monitor/releases/late
 `/ts/renderer/index.js`
 - linked through the `index.html` file.
 - creates user interface
+
+### Code
+https://github.com/itterheim/Electron-Serial-Port-Monitor/tree/master/ts
