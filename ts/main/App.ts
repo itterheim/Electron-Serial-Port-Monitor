@@ -35,7 +35,9 @@ export class App {
 
         const win = new electron.BrowserWindow({
             title: 'Serial Monitor',
+            minWidth: 600,
             width: Math.max(800, Math.round(dimensions.width * 0.75 / 10) * 10), // 75% of width
+            minHeight: 300,
             height: Math.max(600, Math.round(dimensions.height * 0.75 / 10) * 10), // 75% of height
             webPreferences: {
                 nodeIntegration: true
