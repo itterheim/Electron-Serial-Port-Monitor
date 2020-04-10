@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "lib": ["es6", "dom", "ES2017"],
+        "module": "commonjs",
+        "target": "ES6",
+        "sourceMap": true,
+        "esModuleInterop": true,
+        "outDir": "./dist",
+        "mapRoot": "/dist",
+    },
+    "include": [
+        "./ts/**/*"
+    ],
+    "exclude": [
+        "./dist",
+        "./node_modules"
+    ]
+}

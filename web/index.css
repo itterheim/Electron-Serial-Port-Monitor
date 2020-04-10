@@ -1,0 +1,11 @@
+html {
+    color: #000;
+    font-family: monospace;
+    font-size: 16px;
+
+    border-top: 1px solid rgb(0, 170, 170)
+}
+
+select {
+    width: 100px;
+}

@@ -1,0 +1,29 @@
+{
+  "name": "electron-app-002",
+  "productName": "Electron App 002",
+  "version": "1.0.0",
+  "description": "Electron ts test",
+  "main": "./dist/main/main.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "lint": "tslint -c tslint.json -p tsconfig.json",
+    "start": "npm run build && electron ./dist/main/main.js",
+    "install": "electron-rebuild",
+    "dist": "electron-packager ."
+  },
+  "author": "Martin Itterheim",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^12.12.35",
+    "@types/serialport": "^8.0.0",
+    "electron": "^8.2.1",
+    "electron-packager": "^14.2.1",
+    "electron-rebuild": "^1.10.1",
+    "tslint": "^5.19.0",
+    "typescript": "^3.6.0"
+  },
+  "dependencies": {
+    "serialport": "^8.0.7"
+  }
+}

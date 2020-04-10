@@ -1,0 +1,31 @@
+{
+    "extends": "tslint:latest",
+    "rules": {
+        "indent": [true, "spaces", 4],
+        "quotemark": [true, "single"],
+        "semicolon": [true, "always"],
+        "no-var-keyword": true,
+        "no-consecutive-blank-lines": true,
+        "no-unused-expression": [true, "allow-fast-null-checks", "allow-new", "allow-tagged-template"],
+        "no-implicit-dependencies": false,
+        "no-submodule-imports": false,
+        "trailing-comma": [true, {"multiline": "never", "singleline": "never"}],
+        "no-console": false,
+        "max-line-length": false,
+        "space-before-function-paren": [true, {
+            "anonymous": "always",
+            "named": "always",
+            "asyncArrow": "always",
+            "constructor": "always",
+            "method": "always"
+        }],
+        "no-bitwise": false,
+        "variable-name": [true, "ban-keywords"],
+        "object-literal-sort-keys": false,
+        "prefer-conditional-expression": false,
+        "no-any": false,
+        "interface-name": false,
+        "max-classes-per-file": true,
+        "prefer-for-of": false
+    }
+}
