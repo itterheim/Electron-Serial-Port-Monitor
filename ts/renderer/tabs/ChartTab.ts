@@ -88,8 +88,9 @@ export class ChartTab implements ITab {
         const step = Math.min(20, (this.canvas.width - 2 * padding) / data.length);
 
         const height = this.canvas.height - 3 * padding;
-        const range = DataStore.numericData.range.slice(1).reduce((s, x) => isNaN(x) ? s : Math.max(s, x), 50);
+        const max = DataStore.numericData.max.slice(1).reduce((s, x) => isNaN(x) ? s : Math.max(s, x), 50);
         const min = DataStore.numericData.min.slice(1).reduce((s, x) => isNaN(x) ? s : Math.min(s, x), 0);
+        const range = max - min;
 
         this.ctx.lineWidth = 2;
         this.ctx.lineCap = 'round';

@@ -49,15 +49,15 @@ export class App {
         win.on('closed', () => this.serial.close());
 
         // receive events from the renderer process
-        electron.ipcMain.on('serial-connect', async (event, arg) => {
+        electron.ipcMain.on('serial-connect', async (channel, arg) => {
             if (this.serial.isOpen()) {
                 await this.serial.close();
             }
-            this.serial.open(JSON.parse(arg), event);
+            this.serial.open(JSON.parse(arg), channel);
         });
 
         electron.ipcMain.on('serial-disconnect', () => this.serial.close());
 
-        electron.ipcMain.on('serial-refresh-ports', (event) => this.serial.loadPorts(event));
+        electron.ipcMain.on('serial-refresh-ports', (channel) => this.serial.loadPorts(channel));
     }
 }

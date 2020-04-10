@@ -130,7 +130,7 @@ div.content {
 
 div.content.content-tab-monitor {
     background: #eee;
-    padding: 26px;
+    padding: 10px 26px;
 }
 
 div.content.content-tab-monitor div.monitor-row span.timestamp {
@@ -169,7 +169,7 @@ div.content-tab-chart canvas {
 }
 
 div.content-tab-data {
-    padding: 26px;
+    padding: 10px 26px;
 }
 
 div.content-tab-data table {
