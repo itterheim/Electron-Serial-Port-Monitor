@@ -1,6 +1,6 @@
 # /main
 
-### index.ts
+### main.ts
 This file has only one purpose - to create an instance of the `./main/App` class
 
 ### App.ts
