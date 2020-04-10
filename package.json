@@ -1,7 +1,7 @@
 {
-  "name": "electron-app-002",
-  "productName": "Electron App 002",
-  "version": "1.0.0",
+  "name": "electron-serial-port-monitor",
+  "productName": "Serial Port Monitor",
+  "version": "0.0.1",
   "description": "Electron ts test",
   "main": "./dist/main/main.js",
   "scripts": {

@@ -1,11 +1,192 @@
-html {
-    color: #000;
-    font-family: monospace;
-    font-size: 16px;
-
-    border-top: 1px solid rgb(0, 170, 170)
+@font-face {
+    font-family: "FiraCode";
+    src: url("./fonts/FiraCode-Bold.ttf") format("truetype");
+    font-weight: 900;
+    /* font-style: normal; */
 }
 
-select {
+@font-face {
+    font-family: "FiraCode";
+    src: url("./fonts/FiraCode-SemiBold.ttf") format("truetype");
+    font-weight: 700;
+    /* font-style: normal; */
+}
+
+@font-face {
+    font-family: "FiraCode";
+    src: url("./fonts/FiraCode-Medium.ttf") format("truetype");
+    font-weight: 600;
+    /* font-style: normal; */
+}
+
+@font-face {
+    font-family: "FiraCode";
+    src: url("./fonts/FiraCode-Regular.ttf") format("truetype");
+    font-weight: 500;
+    /* font-style: normal; */
+}
+
+@font-face {
+    font-family: "FiraCode";
+    src: url("./fonts/FiraCode-Light.ttf") format("truetype");
+    font-weight: 100;
+    /* font-style: normal; */
+}
+
+/* html, body {
+    height: 100%;
+    margin: 0;
+} */
+
+html {
+    color: #000;
+    font-family: "FiraCode";
+    font-size: 14px;
+}
+
+div.app {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow: hidden;
+}
+
+div.connection {
+    height: 36px;
+    box-sizing: border-box;
+    padding: 5px 26px;
+    background: rgb(0, 170, 170);
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+
+div.connection select,
+div.connection button {
+    font-family: "FiraCode";
+    font-size: 14px;
+    border: none;
+    height: 26px;
+    cursor: pointer;
+    background: #fff;
+    border-radius: 3px;
+
+    box-shadow: 0 0 2px rgba(0,0,0,0.15);
+    transition: box-shadow 0.12s ease-in-out
+}
+
+div.connection select:hover,
+div.connection button:hover {
+    box-shadow: 0 0 4px rgba(0,0,0,0.75);
+}
+
+div.connection select {
     width: 100px;
+}
+
+div.tabs {
+    height: 36px;
+    padding: 5px 0 0 26px;
+    box-sizing: border-box;
+    border-bottom: 1px solid rgb(0, 170, 170);
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+div.tabs div.tab {
+    color: rgb(0, 170, 170);
+    float: left;
+    height: 31px;
+    border-radius: 3px 3px 0 0;
+    padding: 7px 10px;
+    margin-right: 10px;
+    background: #eee;
+    box-sizing: border-box;
+    cursor: pointer;
+
+    transition: background 0.12s ease-in-out, color 0.12s ease-in-out;
+}
+
+div.tabs div.tab.selected {
+    background: rgb(0, 170, 170);
+    color: #fff;
+    cursor: default;
+}
+
+div.content {
+    background: #fff;
+    overflow: auto;
+    position: absolute;
+    top: 72px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    transition: background 0.12s ease-in-out
+}
+
+div.content.content-tab-monitor {
+    background: #eee;
+    padding: 26px;
+}
+
+div.content.content-tab-monitor div.monitor-row span.timestamp {
+    color: rgb(0, 170, 170);
+}
+
+div.content.content-tab-monitor div.up {
+    background: rgb(0, 170, 170);
+    color: #fff;
+    width: 36px;
+    height: 36px;
+    border-radius: 36px;
+    position: fixed;
+    right: 26px;
+    bottom: 26px;
+    visibility: hidden;
+    text-align: center;
+    box-sizing: border-box;
+    padding-top: 10px;
+    cursor: pointer;
+
+    box-shadow: 0 0 2px rgba(0,0,0,0.15);
+    transition: box-shadow 0.12s ease-in-out
+}
+
+div.content.content-tab-monitor div.up:hover {
+    box-shadow: 0 0 4px rgba(0,0,0,0.75);
+}
+
+div.content-tab-chart {
+    overflow: hidden;
+}
+
+div.content-tab-chart canvas {
+    display: block;
+}
+
+div.content-tab-data {
+    padding: 26px;
+}
+
+div.content-tab-data table {
+    border-collapse: collapse;
+}
+
+div.content-tab-data thead th {
+    min-width: 140px;
+    padding: 0 10px 5px 2px;
+    border-bottom: 1px solid rgb(0, 170, 170);
+    text-align: left;
+}
+
+div.content-tab-data tbody td {
+    padding: 2px 10px 0 2px;
+}
+
+div.content-tab-data tbody tr:first-child td {
+    padding-top: 7px;
 }

@@ -29,9 +29,13 @@ export class App {
     }
 
     private createWindow () {
+        const mainScreen = electron.screen.getPrimaryDisplay();
+        const dimensions = mainScreen.size;
+
         const win = new electron.BrowserWindow({
-            width: 800,
-            height: 600,
+            title: 'Serial Monitor',
+            width: Math.max(800, Math.round(dimensions.width * 0.75 / 10) * 10), // 75% of width
+            height: Math.max(600, Math.round(dimensions.height * 0.75 / 10) * 10), // 75% of height
             webPreferences: {
                 nodeIntegration: true
             }
@@ -39,7 +43,7 @@ export class App {
         win.setMenuBarVisibility(false);
         win.loadFile(path.join(__dirname, '../../web/index.html'));
 
-        win.webContents.openDevTools();
+        // win.webContents.openDevTools();
 
         win.on('closed', () => this.serial.close());
 

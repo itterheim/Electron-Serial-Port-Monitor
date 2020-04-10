@@ -1,5 +1,11 @@
 import { IReceivedData } from '../shared/IReceivedData';
-import { Globals } from './Globals';
+import { DataStore } from './DataStore';
+import { ChartTab } from './tabs/ChartTab';
+import { DataTab } from './tabs/DataTab';
+import { ITab } from './tabs/ITab';
+import { MonitorTab } from './tabs/MonitorTab';
+
+type TabType = 'monitor' | 'chart' | 'data';
 
 export class UserInterface {
     public onConnectClick: (port: string, baudRate: number) => void;
@@ -8,8 +14,7 @@ export class UserInterface {
 
     private root: HTMLDivElement;
 
-    private headers: HTMLDivElement;
-    private data: HTMLDivElement;
+    private content: HTMLDivElement;
 
     private portSelect: HTMLSelectElement;
     private baudRateSelect: HTMLSelectElement;
@@ -18,22 +23,28 @@ export class UserInterface {
     private connectButton: HTMLButtonElement;
     private disconnectButton: HTMLButtonElement;
 
+    private monitorTab: HTMLDivElement;
+    private dataTab: HTMLDivElement;
+    private chartTab: HTMLDivElement;
+
+    private tab: TabType;
+    private tabContent: ITab;
+
     constructor () {
         this.root = document.querySelector('div.app');
 
         this.create();
-    }
-
-    public clearHeaders () {
-        this.headers.innerHTML = '';
-    }
-
-    public setHeaders (data: IReceivedData) {
-        this.headers.innerHTML = data.data.join(' - ');
+        this.showTab();
     }
 
     public clearData () {
-        this.data.innerHTML = '';
+        this.tabContent.clearData();
+    }
+
+    public setHeaders (data: IReceivedData) {
+        if (this.tabContent?.setHeaders) {
+            this.tabContent.setHeaders(data);
+        }
     }
 
     public setData (data: IReceivedData[]) {
@@ -43,19 +54,21 @@ export class UserInterface {
     }
 
     public addData (data: IReceivedData) {
-        this.data.insertAdjacentHTML('afterbegin', `${data.data.join(' - ')}<br/>`);
+        if (this.tabContent?.addData) {
+            this.tabContent.addData(data);
+        }
     }
 
     public updatePorts () {
-        this.portSelect.innerHTML = Globals.ports.map((x) => `<option>${x.path}</option>`).join('\n');
+        this.portSelect.innerHTML = DataStore.ports.map((x) => `<option>${x}</option>`).join('\n');
     }
 
     private create () {
-        this.root.insertAdjacentHTML('afterbegin', `
-            <div>
+        const html = `
+            <div class="connection">
                 <button id="refresh">Refresh</button>
                 <select id="port">
-                    ${Globals.ports.map((x) => `<option>${x.path}</option>`)}
+                    ${DataStore.ports.map((x) => `<option>${x}</option>`)}
                 </select>
                 <select id="baudRate">
                     <option>110</option>
@@ -76,19 +89,28 @@ export class UserInterface {
                 <button id="connect">Connect</button>
                 <button id="disconnect">Disconnect</button>
             </div>
-            <br/>
-            <div class="headers"></div>
-            <br/>
-            <div class="data"></div>
-        `);
+
+            <div class="tabs">
+                <div class="tab selected" id="tab-monitor">Monitor</div>
+                <div class="tab" id="tab-chart">Chart</div>
+                <div class="tab" id="tab-data">Data</div>
+            </div>
+
+            <div class="content">
+            </div>
+        `;
+
+        this.root.insertAdjacentHTML('afterbegin', html);
 
         this.refreshButton = document.getElementById('refresh') as HTMLButtonElement;
         this.portSelect = document.getElementById('port') as HTMLSelectElement;
         this.baudRateSelect = document.getElementById('baudRate') as HTMLSelectElement;
         this.connectButton = document.getElementById('connect') as HTMLButtonElement;
         this.disconnectButton = document.getElementById('disconnect') as HTMLButtonElement;
-        this.headers = document.querySelector('div.headers');
-        this.data = document.querySelector('div.data');
+        this.monitorTab = document.getElementById('tab-monitor') as HTMLDivElement;
+        this.chartTab = document.getElementById('tab-chart') as HTMLDivElement;
+        this.dataTab = document.getElementById('tab-data') as HTMLDivElement;
+        this.content = document.querySelector('div.content');
 
         this.refreshButton.onclick = () => {
             if (this.onRefreshClick) {
@@ -111,8 +133,38 @@ export class UserInterface {
             }
         };
 
-        // window.onresize = () => {
-        //   console.log(window.window.innerWidth, window.innerHeight)
-        // }
+        this.monitorTab.onclick = () => this.showTab('monitor');
+        this.chartTab.onclick = () => this.showTab('chart');
+        this.dataTab.onclick = () => this.showTab('data');
+    }
+
+    private showTab (tab?: TabType) {
+        this.tab = tab ?? 'monitor';
+        this.unselectTabs();
+
+        if (this.tabContent) {
+            this.tabContent.hide();
+        }
+
+        if (this.tab === 'monitor') {
+            this.monitorTab.classList.add('selected');
+            this.tabContent = new MonitorTab(this.content);
+        }
+        if (this.tab === 'chart') {
+            this.chartTab.classList.add('selected');
+            this.tabContent = new ChartTab(this.content);
+        }
+        if (this.tab === 'data') {
+            this.dataTab.classList.add('selected');
+            this.tabContent = new DataTab(this.content);
+        }
+
+        this.tabContent.show();
+    }
+
+    private unselectTabs () {
+        this.monitorTab.classList.remove('selected');
+        this.chartTab.classList.remove('selected');
+        this.dataTab.classList.remove('selected');
     }
 }

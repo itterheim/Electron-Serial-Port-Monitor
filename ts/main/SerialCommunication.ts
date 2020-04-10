@@ -1,5 +1,4 @@
 import * as electron from 'electron';
-import * as path from 'path';
 
 import readline from '@serialport/parser-readline';
 import SerialPort from 'serialport';
@@ -15,10 +14,9 @@ export class SerialCommunication {
 
     public async loadPorts (outChannel?: electron.IpcMainEvent) {
         const ports = await SerialPort.list();
-        global.sharedObject.ports = ports;
 
         if (outChannel) {
-            outChannel.reply('serial-ports', JSON.stringify(global.sharedObject.ports));
+            outChannel.reply('serial-ports', JSON.stringify(ports.map((x) => x.path)));
         }
     }
 
@@ -35,6 +33,14 @@ export class SerialCommunication {
         const parser = new readline();
         this.port.pipe(parser);
 
+        this.port.on('open', () => {
+            try {
+                outChannel.reply('serial-opened', 'opened');
+            } catch (err) {
+                console.log('IpcMainEvent: failed to respond "serial port opened"');
+            }
+        });
+
         this.port.on('close', () => {
             try {
                 outChannel.reply('serial-closed', 'closed');
@@ -46,24 +52,25 @@ export class SerialCommunication {
         let first = true;
         parser.on('data', (line: string) => {
             const outData: IReceivedData = {
+                timestamp: new Date().toISOString(),
                 port: data.port,
                 baudRate: data.baudRate,
                 type: 'values',
-                data: []
+                data: line.split(','),
+                raw: line
             };
 
             if (first) {
                 first = false;
                 outData.type = 'headers';
                 outData.data = line.split(',');
-                global.sharedObject.headers = outData;
-                global.sharedObject.data = [];
-            } else {
-                outData.data = line.split(',').map((x) => parseInt(x, 10));
-                global.sharedObject.data.push(outData);
             }
 
-            outChannel.reply('serial-data', JSON.stringify(outData));
+            try {
+                outChannel.reply('serial-data', JSON.stringify(outData));
+            } catch (err) {
+                console.log('IpcMainEvent: failed to respond "serial data"');
+            }
         });
     }
 

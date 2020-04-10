@@ -1,6 +1,8 @@
 import { IPortData } from './IPortData';
 
 export interface IReceivedData extends IPortData {
+    timestamp: string;
     type: 'values' | 'headers';
-    data: Array<string | number>;
+    data: string[];
+    raw: string;
 }
