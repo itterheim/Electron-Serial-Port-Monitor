@@ -61,7 +61,7 @@ export class ChartTab implements ITab {
             if (i === 0) { return; }
 
             this.ctx.beginPath();
-            this.ctx.fillStyle = this.colors[i];
+            this.ctx.fillStyle = this.colors[i - 1];
             this.ctx.arc(left, top, 5, 0, 2 * Math.PI);
             this.ctx.fill();
 
@@ -111,7 +111,7 @@ export class ChartTab implements ITab {
                     const x2 = padding + i * step;
                     const y2 = this.canvas.height - padding - h2;
 
-                    this.ctx.strokeStyle = this.colors[j];
+                    this.ctx.strokeStyle = this.colors[j - 1];
                     this.ctx.beginPath();
                     this.ctx.moveTo(x1, y1);
                     this.ctx.lineTo(x2, y2);
