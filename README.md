@@ -5,11 +5,11 @@ Serial port monitor written in TypeScript and Electron.
 This is a work in progress.
 
 ## Data requirements
-- messages are separated by `\n`
+- messages separated by `\n`
 
 ### chart and table
-- values sparated by comma `,`
-- first message containse data header
+- values separated by comma `,`
+- first message contains data header
 - first value is used for the `x` axis
 - values are parsed as `float` or ignored
 
@@ -22,8 +22,8 @@ Release: https://github.com/itterheim/Electron-Serial-Port-Monitor/releases/late
 1. https://nodejs.org/en/
 2. `npm install`
 3. Start:
-- option 1: start app: `npm run start`
-- option 2: create executable: `npm run dist` (creates new folder `Serial Port Monitor-...`)
+- **option 1:** start app: `npm run start`
+- **option 2:** create executable: `npm run dist` (creates new folder `Serial Port Monitor-...`)
 
 ## Screenshots
 
