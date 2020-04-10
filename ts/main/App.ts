@@ -6,6 +6,7 @@ import { SerialCommunication } from './SerialCommunication';
 // Main process
 export class App {
     private serial: SerialCommunication;
+
     constructor () {
         // serial communication
         this.serial = new SerialCommunication();
