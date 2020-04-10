@@ -2,7 +2,7 @@
   "name": "electron-serial-port-monitor",
   "productName": "Serial Port Monitor",
   "version": "0.0.1",
-  "description": "Electron ts test",
+  "description": "Electron Serial Port Monitor",
   "main": "./dist/main/main.js",
   "scripts": {
     "build": "tsc",
