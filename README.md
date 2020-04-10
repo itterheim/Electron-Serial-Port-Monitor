@@ -15,7 +15,7 @@ This is a work in progress.
 
 ## Download (windows x64)
 
-https://github.com/itterheim/Electron-Serial-Port-Monitor/releases/tag/0.0.1
+Release: https://github.com/itterheim/Electron-Serial-Port-Monitor/releases/latest
 
 ## Build
 
