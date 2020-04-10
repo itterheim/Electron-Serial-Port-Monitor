@@ -17,6 +17,8 @@ This is a work in progress.
 
 Release: https://github.com/itterheim/Electron-Serial-Port-Monitor/releases/latest
 
+(zip: ~70 MB, unpacked: ~180 MB)
+
 ## Build
 
 1. https://nodejs.org/en/
