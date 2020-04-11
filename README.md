@@ -1,4 +1,7 @@
-# Serial Port Monitor (v0.0.2)
+![GitHub package.json version](https://img.shields.io/github/package-json/v/itterheim/Electron-Serial-Port-Monitor?style=flat-square)
+![GitHub Release](https://img.shields.io/github/v/release/itterheim/Electron-Serial-Port-Monitor?style=flat-square)
+
+# Serial Port Monitor
 
 Serial port monitor written in TypeScript and Electron.
 
