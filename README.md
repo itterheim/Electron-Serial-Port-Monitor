@@ -85,4 +85,6 @@ Release: https://github.com/itterheim/Electron-Serial-Port-Monitor/releases/late
 - creates user interface
 
 ### Code
+Additional info about the code:
+
 https://github.com/itterheim/Electron-Serial-Port-Monitor/tree/master/ts
