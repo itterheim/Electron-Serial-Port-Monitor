@@ -4,7 +4,7 @@ Serial port monitor written in TypeScript and Electron.
 
 `This is a work in progress.`
 
-README contents:
+#### README contents:
 - [Data requirements](#data-requirements)
 - [Download](#download-windows-x64)
 - [Build](#build)
