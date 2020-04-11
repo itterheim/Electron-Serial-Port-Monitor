@@ -11,6 +11,16 @@ This is a work in progress.
 - [How it works](#how-it-works)
 
 ## Data requirements
+data example:
+```
+> time,humidity,temperature
+> 1,20.8,28
+> 1001,21.41,28
+> 2001,21.93,28
+> 3002,22.1,28
+> 4003,22.24,28
+```
+
 - messages separated by `\n`
 
 ### chart and table
