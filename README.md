@@ -1,4 +1,4 @@
-# Serial Port Monitor
+# Serial Port Monitor (v0.0.2)
 
 Serial port monitor written in TypeScript and Electron.
 
